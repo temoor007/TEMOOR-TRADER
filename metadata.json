@@ -1,0 +1,8 @@
+{
+  "name": "TEMOOR TRADER",
+  "description": "A live-rate checking app with WhatsApp ordering, payment simulation, and shopkeeper cash denomination details.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
