@@ -7,17 +7,23 @@ workflows:
       vars:
         JAVA_VERSION: "17"
     scripts:
+      - name: Locate and Fix Permissions
+        script: |
+          # Agar gradlew file kisi sub-folder mein hai to yeh use dhoond kar executable bana degi
+          find . -name "gradlew" -exec chmod +x {} \;
       - name: Set up local.properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
-      - name: Make gradlew executable
-        script: |
-          chmod +x gradlew
+          # Agar sub-folder 'app' moojood hai to us ke andar bhi copy kar dete hain
+          if [ -d "app" ]; then echo "sdk.dir=$ANDROID_SDK_ROOT" > app/local.properties; fi
       - name: Build Android Debug APK
         script: |
+          # Yeh command gradlew jahan bhi hoga, wahan ja kar build shuru kar degi
+          PROJECT_DIR=$(dirname $(find . -name "gradlew" | head -n 1))
+          cd $PROJECT_DIR
           ./gradlew assembleDebug
     artifacts:
-      - app/build/outputs/apk/debug/*.apk
+      - "**/build/outputs/apk/debug/*.apk"  # Yeh kisi bhi folder ke andar se APK dhoond nikalega
     publishing:
       email:
         recipients:
