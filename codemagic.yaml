@@ -11,9 +11,15 @@ workflows:
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
           if [ -d "app" ]; then echo "sdk.dir=$ANDROID_SDK_ROOT" > app/local.properties; fi
-      - name: Build Android Debug APK without wrapper
+      - name: Upgrade Gradle to 9.3.1
         script: |
-          # Agar gradlew nahi hai, to hum direct system ke gradle se build karenge
+          # Homebrew ke zariye Gradle ka latest version system mein install karna
+          brew install gradle
+          # Check karte hain ke sahi version install ho gayi hai ya nahi
+          gradle -v
+      - name: Build Android Debug APK
+        script: |
+          # Upgrade shuda gradle se build run karna
           gradle assembleDebug
     artifacts:
       - "**/build/outputs/apk/debug/*.apk"
