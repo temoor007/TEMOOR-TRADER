@@ -1,27 +1,24 @@
 workflows:
-  android-workflow:
-    name: Android APK Build
+  android-native-workflow:
+    name: Android Native APK Build
     max_build_duration: 60
     instance_type: mac_mini_m1
     environment:
-      groups:
-        - android-signing
-      flutter: stable
-      xcode: latest
-      cocoapods: default
+      android_sdk: latest
+      gradle: latest
     scripts:
       - name: Set up local.properties
         script: |
-          echo "sdk.dir=$ANDROID_SDK_ROOT" > android/local.properties
-      - name: Get Flutter packages
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Make gradlew executable
         script: |
-          flutter pub get
+          chmod +x gradlew
       - name: Build Android APK
         script: |
-          flutter build apk --release
+          ./gradlew assembleRelease
     artifacts:
-      - build/app/outputs/flutter-apk/**/*.apk
+      - app/build/outputs/apk/release/*.apk
     publishing:
       email:
         recipients:
-          - temoor007@gmail.com # Build mukammal hone par APK ka link yahan aaye ga
+          - temoor007@gmail.com
