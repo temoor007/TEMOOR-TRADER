@@ -6,7 +6,7 @@ Area-wise recovery ke liye Android app.
 [Recovery_v5.0.apk](Recovery_v5.0.apk) download karein aur phone par install karein
 (purani app ke upar update ho jayegi, data nahi mitega).
 
-Naya: item ka stock, item aur bill par discount, "Customer ne supplier ko diya".
+Naya: item aur bill par discount, "Customer ne supplier ko diya", stock. Sath mein 4.9 ki sab cheezein (users, Last bill, receipt ki tareekh, Balance Slip).
 
 ## Screens
 ![Recovery screens](Recovery_v4_screens.png)
