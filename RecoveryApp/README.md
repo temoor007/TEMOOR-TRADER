@@ -1,6 +1,6 @@
 # Recovery App — Temoor Trader
 
-Area-wise recovery ke liye Android app.
+Area-wise recovery ke liye Android app. Version 5.0
 
 ## Download
 [Recovery.apk](Recovery.apk) download karein aur phone par install karein
